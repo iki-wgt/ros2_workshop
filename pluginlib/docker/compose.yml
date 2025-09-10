@@ -1,10 +1,11 @@
 services:
-  pluginlib:
-    container_name: pluginlib
-    image: pluginlib
+  polygon_demp:
+    container_name: polygon_demo
+    image: polygon_demo
     build:
       dockerfile: docker/Dockerfile
       context: ..
+      target: polygon_demo
     runtime: nvidia
     environment:
       ROS_DOMAIN_ID: $ROS_DOMAIN_ID
@@ -19,4 +20,4 @@ services:
     volumes:
       - /tmp/.X11-unix:/tmp/.X11-unix
       - $HOME/.Xauthority:/root/.Xauthority
-    command: tail -f /dev/null
+    command: ros2 run polygon_base area_node

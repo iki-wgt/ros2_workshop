@@ -1,4 +1,4 @@
-FROM ros:humble
+FROM ros:humble AS base
 ENV ROS_DISTRO=humble
 ENV ROS_WS=/root/ros2_ws
 ENV DEBIAN_FRONTEND=noninteractive
@@ -46,3 +46,11 @@ WORKDIR $ROS_WS
 RUN source /opt/ros/$ROS_DISTRO/setup.bash && mkdir src && colcon build
 RUN echo 'source $ROS_WS/install/setup.bash' >>  /root/.bashrc
 
+
+
+FROM base as polygon_demo
+COPY polygon_base $ROS_WS/src/polygon_base
+COPY polygon_plugins $ROS_WS/src/polygon_plugins
+
+WORKDIR $ROS_WS
+RUN source /opt/ros/$ROS_DISTRO/setup.bash && colcon build --packages-select polygon_base polygon_plugins
