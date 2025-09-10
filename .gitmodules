@@ -10,3 +10,6 @@
 [submodule "submodules/ros2_example_interfaces"]
 	path = submodules/ros2_example_interfaces
 	url = https://github.com/ros2/example_interfaces
+[submodule "submodules/ros2_testing"]
+	path = submodules/ros2_testing
+	url = https://github.com/ros2/ros_testing.git
