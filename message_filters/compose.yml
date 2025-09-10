@@ -1,0 +1,10 @@
+services:
+  sync_demo:
+    container_name: sync_demo
+    extends:
+      file: ../docker/common.yml
+      service: common
+    image: sync_demo
+    build:
+      target: sync_demo
+    command: ros2 component standalone sync_demo SyncComponent -p sync.max_interval:=1.0
