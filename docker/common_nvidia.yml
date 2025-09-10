@@ -5,10 +5,13 @@ services:
       dockerfile: docker/Dockerfile
       context: ..
       target: base
+    runtime: nvidia
     environment:
       ROS_DOMAIN_ID: $ROS_DOMAIN_ID
       DISPLAY: $DISPLAY
       QT_X11_NO_MITSHM: "1"
+      NVIDIA_VISIBLE_DEVICES: all
+      NVIDI_DRIVER_CAPABILITIES: compute,video,utility,graphics
     network_mode: host
     ipc: host
     privileged: true
