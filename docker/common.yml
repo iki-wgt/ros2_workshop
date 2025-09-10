@@ -1,14 +1,6 @@
 services:
-  polygon_demo:
-    container_name: polygon_demo
-    extends: .common
-    image: polygon_demo
-    build:
-      target: polygon_demo
-    command: ros2 run polygon_base area_node
-
-  .common:
-    image: pluginlib
+  common:
+    image: ros2_workshop
     build:
       dockerfile: docker/Dockerfile
       context: ..
@@ -27,3 +19,4 @@ services:
     volumes:
       - /tmp/.X11-unix:/tmp/.X11-unix
       - $HOME/.Xauthority:/root/.Xauthority
+    command: tail -f /dev/null

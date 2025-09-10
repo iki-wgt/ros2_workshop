@@ -1,0 +1,10 @@
+services:
+  pointcloud_demo:
+    container_name: pointcloud_demo
+    extends:
+      file: ../docker/common.yml
+      service: common
+    image: pointcloud_demo
+    build:
+      target: pointcloud_demo
+    command: ros2 component standalone pointcloud_demo DemoComponent -p leaf_size:=0.2 -r cloud_in:=/camera/points -r cloud_out:=/camera/down_sampled

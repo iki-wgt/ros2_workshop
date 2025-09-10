@@ -48,9 +48,15 @@ RUN echo 'source $ROS_WS/install/setup.bash' >>  /root/.bashrc
 
 
 
-FROM base as polygon_demo
-COPY polygon_base $ROS_WS/src/polygon_base
-COPY polygon_plugins $ROS_WS/src/polygon_plugins
-
-WORKDIR $ROS_WS
+FROM base AS polygon_demo
+COPY pluginlib/polygon_base $ROS_WS/src/polygon_base
+COPY pluginlib/polygon_plugins $ROS_WS/src/polygon_plugins
 RUN source /opt/ros/$ROS_DISTRO/setup.bash && colcon build --packages-select polygon_base polygon_plugins
+
+FROM base AS pointcloud_demo
+COPY pointcloud/pointcloud_demo $ROS_WS/src/pointcloud_demo
+RUN apt update \
+ && rosdep update \
+ && rosdep install --from-paths ${ROS_WS}/src --ignore-src -r -y \
+ && rm -rf /var/lib/apt/lists/*
+RUN source /opt/ros/$ROS_DISTRO/setup.bash && colcon build --packages-select pointcloud_demo
