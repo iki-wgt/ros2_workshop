@@ -1,6 +1,6 @@
 [submodule "ros2_examples"]
-	path = ros2_examples
+	path = submodules/ros2_examples
 	url = https://github.com/ros2/examples.git
 [submodule "ros2_i_training"]
-	path = ros2_i_training
+	path = submodules/ros2_i_training
 	url = git@github.com:iki-wgt/ros2_i_training.git
