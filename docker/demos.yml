@@ -1,0 +1,10 @@
+services:
+  ros2_demos:
+    container_name: ros2_demos
+    extends:
+      file: ../docker/common.yml
+      service: common
+    image: ros2_demos
+    build:
+      target: ros2_demos
+    command: tail -f /dev/null

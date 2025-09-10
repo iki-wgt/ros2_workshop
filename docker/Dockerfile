@@ -47,6 +47,18 @@ RUN source /opt/ros/$ROS_DISTRO/setup.bash && mkdir src && colcon build
 RUN echo 'source $ROS_WS/install/setup.bash' >>  /root/.bashrc
 
 
+FROM base AS ros2_demos
+
+RUN apt update \
+    && apt install -y \ 
+    ros-${ROS_DISTRO}-example-interfaces \
+    ros-${ROS_DISTRO}-ros-testing
+
+COPY submodules/ros2_examples $ROS_WS/src/ros2_examples
+#COPY submodules/ros2_examples $ROS_WS/src/ros2_testing
+COPY submodules/ros2_demos $ROS_WS/src/ros2_demos
+
+RUN source /opt/ros/$ROS_DISTRO/setup.bash && colcon build
 
 FROM base AS polygon_demo
 COPY pluginlib/polygon_base $ROS_WS/src/polygon_base
