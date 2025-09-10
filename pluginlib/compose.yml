@@ -1,0 +1,10 @@
+services:
+  polygon_demo:
+    container_name: polygon_demo
+    extends:
+      file: ../docker/common.yml
+      service: common
+    image: polygon_demo
+    build:
+      target: polygon_demo
+    command: ros2 run polygon_base area_node
