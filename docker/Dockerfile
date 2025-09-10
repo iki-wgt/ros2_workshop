@@ -60,3 +60,7 @@ RUN apt update \
  && rosdep install --from-paths ${ROS_WS}/src --ignore-src -r -y \
  && rm -rf /var/lib/apt/lists/*
 RUN source /opt/ros/$ROS_DISTRO/setup.bash && colcon build --packages-select pointcloud_demo
+
+FROM base AS zero_copy_demo
+COPY zero_copy_transport/zero_copy_demo $ROS_WS/src/zero_copy_demo
+RUN source /opt/ros/$ROS_DISTRO/setup.bash && colcon build --packages-select zero_copy_demo

@@ -1,0 +1,26 @@
+services:
+  zero_copy_demo:
+    container_name: zero_copy_demo
+    extends:
+      file: ../docker/common.yml
+      service: common
+    image: zero_copy_demo
+    build:
+      target: zero_copy_demo
+    command:
+      - bash
+      - -c
+      - |
+        # Start a multithreaded component manager with intra-process comms
+        ros2 run rclcpp_components component_container_mt&
+
+        # In a second shell, load both components into that same process:
+        ros2 component load /ComponentManager zero_copy_demo TalkerComponent   --node-name talker --extra-argument use_intra_process_comms:=true
+        ros2 component load /ComponentManager zero_copy_demo ListenerComponent --node-name listener --extra-argument use_intra_process_comms:=true
+
+        sleep 10
+
+        ros2 component load /ComponentManager zero_copy_demo ListenerComponent --node-name listener2 --extra-argument use_intra_process_comms:=true
+
+        # Keep container alive
+        tail -f /dev/null
