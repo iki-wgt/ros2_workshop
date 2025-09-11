@@ -16,4 +16,5 @@ services:
     volumes:
       - /tmp/.X11-unix:/tmp/.X11-unix
       - $HOME/.Xauthority:/root/.Xauthority
+      - /run/user/1000/gdm/Xauthority:/root/.Xauthority:ro
     command: tail -f /dev/null
