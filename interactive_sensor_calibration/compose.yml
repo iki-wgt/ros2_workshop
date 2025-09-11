@@ -1,0 +1,15 @@
+services:
+  sensor_calibration_demo:
+    container_name: sensor_calibration_demo
+    extends:
+      file: ../docker/common.yml
+      service: common
+    image: sensor_calibration_demo
+    build:
+      target: sensor_calibration_demo
+    command:
+      - bash
+      - -c
+      - |
+        ros2 run rviz2 rviz2&
+        ros2 component standalone sensor_calibration InteractiveTfCalib -p frames.child_a:=sensor_1 -p frames.child_b:=sensor2

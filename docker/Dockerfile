@@ -50,7 +50,7 @@ RUN echo 'source $ROS_WS/install/setup.bash' >>  /root/.bashrc
 FROM base AS ros2_demos
 
 RUN apt update \
-    && apt install -y \ 
+    && apt install -y \
     ros-${ROS_DISTRO}-example-interfaces \
     ros-${ROS_DISTRO}-ros-testing
 
@@ -80,3 +80,11 @@ RUN source /opt/ros/$ROS_DISTRO/setup.bash && colcon build --packages-select zer
 FROM base AS sync_demo
 COPY message_filters/sync_demo $ROS_WS/src/sync_demo
 RUN source /opt/ros/$ROS_DISTRO/setup.bash && colcon build --packages-select sync_demo
+
+FROM base AS sensor_calibration_demo
+COPY interactive_sensor_calibration/sensor_calibration $ROS_WS/src/sensor_calibration
+RUN apt update \
+ && rosdep update \
+ && rosdep install --from-paths ${ROS_WS}/src --ignore-src -r -y \
+ && rm -rf /var/lib/apt/lists/*
+RUN source /opt/ros/$ROS_DISTRO/setup.bash && colcon build --packages-select sensor_calibration
