@@ -1,0 +1,10 @@
+services:
+  gazebo:
+    container_name: gazebo
+    extends:
+      file: ../docker/common_nvidia.yml
+      service: common
+    image: gazebo
+    build:
+      target: gazebo
+    command: ros2 launch room_sim room_rgbd.launch.py

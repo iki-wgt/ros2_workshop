@@ -1,0 +1,56 @@
+# ---------- /clock ----------
+- gz_topic_name: /clock
+  ros_topic_name: /clock
+  gz_type_name: gz.msgs.Clock
+  ros_type_name: rosgraph_msgs/msg/Clock
+  direction: GZ_TO_ROS
+
+# ---------- cam1 ----------
+- gz_topic_name: /cam1/rgbd/image
+  ros_topic_name: /cam1/rgbd/image
+  gz_type_name: gz.msgs.Image
+  ros_type_name: sensor_msgs/msg/Image
+  direction: GZ_TO_ROS
+
+- gz_topic_name: /cam1/rgbd/depth_image
+  ros_topic_name: /cam1/rgbd/depth_image
+  gz_type_name: gz.msgs.Image
+  ros_type_name: sensor_msgs/msg/Image
+  direction: GZ_TO_ROS
+
+- gz_topic_name: /cam1/rgbd/camera_info
+  ros_topic_name: /cam1/rgbd/camera_info
+  gz_type_name: gz.msgs.CameraInfo
+  ros_type_name: sensor_msgs/msg/CameraInfo
+  direction: GZ_TO_ROS
+
+- gz_topic_name: /cam1/rgbd/points
+  ros_topic_name: /cam1/rgbd/points
+  gz_type_name: gz.msgs.PointCloudPacked
+  ros_type_name: sensor_msgs/msg/PointCloud2
+  direction: GZ_TO_ROS
+
+# ---------- cam2 ----------
+- gz_topic_name: /cam2/rgbd/image
+  ros_topic_name: /cam2/rgbd/image
+  gz_type_name: gz.msgs.Image
+  ros_type_name: sensor_msgs/msg/Image
+  direction: GZ_TO_ROS
+
+- gz_topic_name: /cam2/rgbd/depth_image
+  ros_topic_name: /cam2/rgbd/depth_image
+  gz_type_name: gz.msgs.Image
+  ros_type_name: sensor_msgs/msg/Image
+  direction: GZ_TO_ROS
+
+- gz_topic_name: /cam2/rgbd/camera_info
+  ros_topic_name: /cam2/rgbd/camera_info
+  gz_type_name: gz.msgs.CameraInfo
+  ros_type_name: sensor_msgs/msg/CameraInfo
+  direction: GZ_TO_ROS
+
+- gz_topic_name: /cam2/rgbd/points
+  ros_topic_name: /cam2/rgbd/points
+  gz_type_name: gz.msgs.PointCloudPacked
+  ros_type_name: sensor_msgs/msg/PointCloud2
+  direction: GZ_TO_ROS

@@ -110,6 +110,7 @@ InteractiveTfCalib::make6DofMarker(const std::string &name,
   im.description = name + " (drag to move/rotate)";
   im.scale = 0.4;
   im.pose = pose;
+  im.header.frame_id = map_frame_;
 
   // A visible box
   Marker box;
@@ -178,7 +179,13 @@ geometry_msgs::msg::Pose InteractiveTfCalib::rpyToPose(double x, double y,
 
 void InteractiveTfCalib::onFeedback(
     const InteractiveMarkerFeedback::ConstSharedPtr &fb) {
-  // Update pose in corresponding transform
+
+  if (fb->event_type != InteractiveMarkerFeedback::POSE_UPDATE &&
+      fb->event_type != InteractiveMarkerFeedback::MOUSE_UP) {
+    return;
+  }
+
+  // Update TF from the pose RViz reports (in map frame)
   if (fb->marker_name == child_a_) {
     t_map_a_.transform.translation.x = fb->pose.position.x;
     t_map_a_.transform.translation.y = fb->pose.position.y;
@@ -190,9 +197,12 @@ void InteractiveTfCalib::onFeedback(
     t_map_b_.transform.translation.z = fb->pose.position.z;
     t_map_b_.transform.rotation = fb->pose.orientation;
   }
-  // Reflect pose in the server (keeps RViz display consistent)
-  server_->setPose(fb->marker_name, fb->pose);
-  server_->applyChanges();
+
+  // Only push the pose back into the server at the end of the drag
+  if (fb->event_type == InteractiveMarkerFeedback::MOUSE_UP) {
+    server_->setPose(fb->marker_name, fb->pose);
+    server_->applyChanges();
+  }
 }
 
 void InteractiveTfCalib::onTimer() {
