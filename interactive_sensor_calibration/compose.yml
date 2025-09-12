@@ -2,7 +2,7 @@ services:
   sensor_calibration_demo:
     container_name: sensor_calibration_demo
     extends:
-      file: ../docker/common.yml
+      file: ../docker/common_nvidia.yml
       service: common
     image: sensor_calibration_demo
     build:
@@ -12,4 +12,4 @@ services:
       - -c
       - |
         ros2 run rviz2 rviz2&
-        ros2 component standalone sensor_calibration InteractiveTfCalib -p frames.child_a:=sensor_1 -p frames.child_b:=sensor2
+        ros2 component standalone sensor_calibration InteractiveTfCalib -p frames.child_a:=cam1/cam_link/cam1_rgbd -p frames.child_b:=cam2/cam_link/cam2_rgbd -p use_sim_time:=true -p poses.a.x:=3.4 -p poses.a.y:=0.0 -p poses.a.z:=1.8 -p poses.a.yaw:=3.14159 -p poses.b.x:=0.0 -p poses.b.y:=-2.4 -p poses.b.z:=1.8 -p poses.b.yaw:=1.5708

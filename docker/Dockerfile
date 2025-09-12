@@ -88,3 +88,11 @@ RUN apt update \
  && rosdep install --from-paths ${ROS_WS}/src --ignore-src -r -y \
  && rm -rf /var/lib/apt/lists/*
 RUN source /opt/ros/$ROS_DISTRO/setup.bash && colcon build --packages-select sensor_calibration
+
+FROM base AS gazebo
+COPY gazebo/room_sim $ROS_WS/src/room_sim
+RUN apt update \
+ && rosdep update \
+ && rosdep install --from-paths ${ROS_WS}/src --ignore-src -r -y \
+ && rm -rf /var/lib/apt/lists/*
+RUN source /opt/ros/$ROS_DISTRO/setup.bash && colcon build --packages-select room_sim
