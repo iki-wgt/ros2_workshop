@@ -149,10 +149,111 @@
       </link>
     </model>
 
+        <!-- Small chair -->
+    <model name="chair_small">
+      <static>true</static>
+      <pose>1.8 0.9 0 0 0 0</pose>
+      <link name="chair">
+        <!-- seat -->
+        <collision name="seat_col">
+          <pose>0 0 0.47 0 0 0</pose>
+          <geometry><box><size>0.40 0.40 0.04</size></box></geometry>
+        </collision>
+        <visual name="seat_vis">
+          <pose>0 0 0.47 0 0 0</pose>
+          <geometry><box><size>0.40 0.40 0.04</size></box></geometry>
+          <material><ambient>0.2 0.5 0.8 1</ambient><diffuse>0.25 0.6 0.9 1</diffuse></material>
+        </visual>
+        <!-- backrest -->
+        <collision name="back_col">
+          <pose>0 0.18 0.665 0 0 0</pose>
+          <geometry><box><size>0.40 0.04 0.35</size></box></geometry>
+        </collision>
+        <visual name="back_vis">
+          <pose>0 0.18 0.665 0 0 0</pose>
+          <geometry><box><size>0.40 0.04 0.35</size></box></geometry>
+          <material><ambient>0.2 0.5 0.8 1</ambient><diffuse>0.25 0.6 0.9 1</diffuse></material>
+        </visual>
+        <!-- legs (0.45 m) -->
+        <collision name="leg_fl_col"><pose> 0.17  0.17 0.225 0 0 0</pose><geometry><box><size>0.04 0.04 0.45</size></box></geometry></collision>
+        <collision name="leg_fr_col"><pose> 0.17 -0.17 0.225 0 0 0</pose><geometry><box><size>0.04 0.04 0.45</size></box></geometry></collision>
+        <collision name="leg_rl_col"><pose>-0.17  0.17 0.225 0 0 0</pose><geometry><box><size>0.04 0.04 0.45</size></box></geometry></collision>
+        <collision name="leg_rr_col"><pose>-0.17 -0.17 0.225 0 0 0</pose><geometry><box><size>0.04 0.04 0.45</size></box></geometry></collision>
+
+        <visual name="leg_fl_vis"><pose> 0.17  0.17 0.225 0 0 0</pose><geometry><box><size>0.04 0.04 0.45</size></box></geometry><material><ambient>0.1 0.1 0.1 1</ambient><diffuse>0.2 0.2 0.2 1</diffuse></material></visual>
+        <visual name="leg_fr_vis"><pose> 0.17 -0.17 0.225 0 0 0</pose><geometry><box><size>0.04 0.04 0.45</size></box></geometry><material><ambient>0.1 0.1 0.1 1</ambient><diffuse>0.2 0.2 0.2 1</diffuse></material></visual>
+        <visual name="leg_rl_vis"><pose>-0.17  0.17 0.225 0 0 0</pose><geometry><box><size>0.04 0.04 0.45</size></box></geometry><material><ambient>0.1 0.1 0.1 1</ambient><diffuse>0.2 0.2 0.2 1</diffuse></material></visual>
+        <visual name="leg_rr_vis"><pose>-0.17 -0.17 0.225 0 0 0</pose><geometry><box><size>0.04 0.04 0.45</size></box></geometry><material><ambient>0.1 0.1 0.1 1</ambient><diffuse>0.2 0.2 0.2 1</diffuse></material></visual>
+      </link>
+    </model>
+
+    <!-- Second small table -->
+    <model name="table_side">
+      <static>true</static>
+      <pose>-2.2 -1.4 0 0 0 0</pose>
+      <link name="table">
+        <collision name="plate_col"><pose>0 0 0.66 0 0 0</pose><geometry><box><size>0.60 0.40 0.04</size></box></geometry></collision>
+        <visual    name="plate_vis"><pose>0 0 0.66 0 0 0</pose><geometry><box><size>0.60 0.40 0.04</size></box></geometry><material><ambient>0.55 0.42 0.3 1</ambient><diffuse>0.65 0.5 0.36 1</diffuse></material></visual>
+
+        <!-- 0.62 m legs -->
+        <collision name="leg_fl_col"><pose> 0.27  0.17 0.31 0 0 0</pose><geometry><box><size>0.04 0.04 0.62</size></box></geometry></collision>
+        <collision name="leg_fr_col"><pose> 0.27 -0.17 0.31 0 0 0</pose><geometry><box><size>0.04 0.04 0.62</size></box></geometry></collision>
+        <collision name="leg_rl_col"><pose>-0.27  0.17 0.31 0 0 0</pose><geometry><box><size>0.04 0.04 0.62</size></box></geometry></collision>
+        <collision name="leg_rr_col"><pose>-0.27 -0.17 0.31 0 0 0</pose><geometry><box><size>0.04 0.04 0.62</size></box></geometry></collision>
+
+        <visual name="leg_fl_vis"><pose> 0.27  0.17 0.31 0 0 0</pose><geometry><box><size>0.04 0.04 0.62</size></box></geometry></visual>
+        <visual name="leg_fr_vis"><pose> 0.27 -0.17 0.31 0 0 0</pose><geometry><box><size>0.04 0.04 0.62</size></box></geometry></visual>
+        <visual name="leg_rl_vis"><pose>-0.27  0.17 0.31 0 0 0</pose><geometry><box><size>0.04 0.04 0.62</size></box></geometry></visual>
+        <visual name="leg_rr_vis"><pose>-0.27 -0.17 0.31 0 0 0</pose><geometry><box><size>0.04 0.04 0.62</size></box></geometry></visual>
+      </link>
+    </model>
+
+    <!-- Freestanding shelf -->
+    <model name="shelf_free">
+      <static>true</static>
+      <pose>-2.2 1.4 0 0 0 0</pose>
+      <link name="shelf">
+        <!-- uprights (1.2 m) -->
+        <collision name="upr_l_col"><pose>-0.28 -0.10 0.60 0 0 0</pose><geometry><box><size>0.04 0.20 1.20</size></box></geometry></collision>
+        <collision name="upr_r_col"><pose> 0.28 -0.10 0.60 0 0 0</pose><geometry><box><size>0.04 0.20 1.20</size></box></geometry></collision>
+        <visual name="upr_l_vis"><pose>-0.28 -0.10 0.60 0 0 0</pose><geometry><box><size>0.04 0.20 1.20</size></box></geometry><material><ambient>0.35 0.35 0.35 1</ambient><diffuse>0.45 0.45 0.45 1</diffuse></material></visual>
+        <visual name="upr_r_vis"><pose> 0.28 -0.10 0.60 0 0 0</pose><geometry><box><size>0.04 0.20 1.20</size></box></geometry><material><ambient>0.35 0.35 0.35 1</ambient><diffuse>0.45 0.45 0.45 1</diffuse></material></visual>
+
+        <!-- three shelves (0.6 x 0.25 x 0.02) -->
+        <collision name="shelf1_col"><pose>0 0 0.30 0 0 0</pose><geometry><box><size>0.60 0.25 0.02</size></box></geometry></collision>
+        <collision name="shelf2_col"><pose>0 0 0.60 0 0 0</pose><geometry><box><size>0.60 0.25 0.02</size></box></geometry></collision>
+        <collision name="shelf3_col"><pose>0 0 0.90 0 0 0</pose><geometry><box><size>0.60 0.25 0.02</size></box></geometry></collision>
+
+        <visual name="shelf1_vis"><pose>0 0 0.30 0 0 0</pose><geometry><box><size>0.60 0.25 0.02</size></box></geometry><material><ambient>0.6 0.45 0.3 1</ambient><diffuse>0.7 0.5 0.35 1</diffuse></material></visual>
+        <visual name="shelf2_vis"><pose>0 0 0.60 0 0 0</pose><geometry><box><size>0.60 0.25 0.02</size></box></geometry><material><ambient>0.6 0.45 0.3 1</ambient><diffuse>0.7 0.5 0.35 1</diffuse></material></visual>
+        <visual name="shelf3_vis"><pose>0 0 0.90 0 0 0</pose><geometry><box><size>0.60 0.25 0.02</size></box></geometry><material><ambient>0.6 0.45 0.3 1</ambient><diffuse>0.7 0.5 0.35 1</diffuse></material></visual>
+      </link>
+    </model>
+
+    <!-- A couple of small standalone props -->
+    <model name="crate_box">
+      <static>true</static>
+      <pose>2.2 -1.5 0 0 0 0</pose>
+      <link name="box">
+        <collision name="col"><pose>0 0 0.15 0 0 0</pose><geometry><box><size>0.30 0.30 0.30</size></box></geometry></collision>
+        <visual name="vis"><pose>0 0 0.15 0 0 0</pose><geometry><box><size>0.30 0.30 0.30</size></box></geometry><material><ambient>0.8 0.2 0.2 1</ambient><diffuse>0.9 0.3 0.3 1</diffuse></material></visual>
+      </link>
+    </model>
+
+    <model name="trash_can">
+      <static>true</static>
+      <pose>-0.8 1.2 0 0 0 0</pose>
+      <link name="can">
+        <collision name="col"><pose>0 0 0.25 0 0 0</pose><geometry><cylinder><radius>0.15</radius><length>0.50</length></cylinder></geometry></collision>
+        <visual name="vis"><pose>0 0 0.25 0 0 0</pose><geometry><cylinder><radius>0.15</radius><length>0.50</length></cylinder></geometry><material><ambient>0.2 0.6 0.2 1</ambient><diffuse>0.3 0.8 0.3 1</diffuse></material></visual>
+      </link>
+    </model>
+
+
     <!-- Camera rig 1 (narrower room => move slightly in from wall) -->
     <model name="cam1">
       <static>true</static>
-      <pose>3.4 0 1.8 0 0 3.14159</pose>
+      <pose>3.4 0 1.8 0 0.523599 3.14159</pose>
       <link name="cam_link">
         <sensor name="cam1_rgbd" type="rgbd_camera">
           <always_on>true</always_on>
@@ -171,7 +272,7 @@
     <!-- Camera rig 2 -->
     <model name="cam2">
       <static>true</static>
-      <pose>0 -2.4 1.8 0 0 1.5708</pose>
+      <pose>0 -2.4 1.8 0 0.523599 1.5708</pose>
       <link name="cam_link">
         <sensor name="cam2_rgbd" type="rgbd_camera">
           <always_on>true</always_on>
