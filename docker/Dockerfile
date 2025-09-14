@@ -67,11 +67,12 @@ RUN source /opt/ros/$ROS_DISTRO/setup.bash && colcon build --packages-select pol
 
 FROM base AS pointcloud_demo
 COPY pointcloud/pointcloud_demo $ROS_WS/src/pointcloud_demo
+COPY pointcloud/pointcloud_segmentation $ROS_WS/src/pointcloud_segmentation
 RUN apt update \
  && rosdep update \
  && rosdep install --from-paths ${ROS_WS}/src --ignore-src -r -y \
  && rm -rf /var/lib/apt/lists/*
-RUN source /opt/ros/$ROS_DISTRO/setup.bash && colcon build --packages-select pointcloud_demo
+RUN source /opt/ros/$ROS_DISTRO/setup.bash && colcon build --packages-select pointcloud_demo pointcloud_segmentation
 
 FROM base AS zero_copy_demo
 COPY zero_copy_transport/zero_copy_demo $ROS_WS/src/zero_copy_demo

@@ -1,0 +1,21 @@
+/**:
+  ros__parameters:
+    use_sim_time: true
+    topics:
+      cloud_a: "/cam1/rgbd/points"
+      cloud_b: "/cam2/rgbd/points"
+      output: "/segmented_points"
+    frames:
+      map: "map"
+    filters:
+      voxel_leaf: 0.05
+      z:
+        min: 0.05
+        max: 5.0
+    clustering:
+      tolerance: 0.2
+      min_size: 30
+      max_size: 250000
+    sync:
+      queue_size: 10
+      slop: 0.2
