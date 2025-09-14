@@ -11,7 +11,7 @@ services:
       - bash
       - -c
       - |
-        ros2 run rviz2 rviz2&
+        ros2 run rviz2 rviz2 --ros-args -p use_sim_time:=true &
         ros2 component standalone sensor_calibration InteractiveTfCalib \
         -p use_sim_time:=true \
         -p frames.child_a:=cam1/cam_link/cam1_rgbd \
