@@ -13,3 +13,6 @@
 [submodule "submodules/ros2_testing"]
 	path = submodules/ros2_testing
 	url = https://github.com/ros2/ros_testing.git
+[submodule "ros2_cheats_sheet"]
+	path = ros2_cheats_sheet
+	url = https://github.com/ubuntu-robotics/ros2_cheats_sheet
