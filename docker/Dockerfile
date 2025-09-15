@@ -1,6 +1,5 @@
 FROM ros:humble AS base
 ENV ROS_DISTRO=humble
-ENV ROS_WS=/root/ros2_ws
 ENV DEBIAN_FRONTEND=noninteractive
 ENV RMW_IMPLEMENTATION=rmw_cyclonedds_cpp
 ENV RCUTILS_COLORIZED_OUTPUT=1
@@ -8,8 +7,14 @@ ENV RCUTILS_COLORIZED_OUTPUT=1
 ENV SHELL=/bin/bash
 SHELL ["/bin/bash", "-c"]
 
+# Define workspace path
+ENV ROS_WS=/ros_ws
+
+# Copy entrypoint
 COPY docker/ros_entrypoint.sh /ros_entrypoint.sh
 RUN chmod +x /ros_entrypoint.sh
+
+# Set entrypoint
 ENTRYPOINT ["/ros_entrypoint.sh"]
 
 RUN apt update \
@@ -49,7 +54,7 @@ RUN echo 'source $ROS_WS/install/setup.bash' >>  /root/.bashrc
 
 FROM base AS ros2_demos
 
-RUN apt update \
+RUN apt update  \
     && apt install -y \
     ros-${ROS_DISTRO}-example-interfaces \
     ros-${ROS_DISTRO}-ros-testing
