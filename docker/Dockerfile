@@ -55,7 +55,6 @@ RUN apt update \
     ros-${ROS_DISTRO}-ros-testing
 
 COPY submodules/ros2_examples $ROS_WS/src/ros2_examples
-#COPY submodules/ros2_examples $ROS_WS/src/ros2_testing
 COPY submodules/ros2_demos $ROS_WS/src/ros2_demos
 
 RUN source /opt/ros/$ROS_DISTRO/setup.bash && colcon build
