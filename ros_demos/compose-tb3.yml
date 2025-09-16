@@ -1,0 +1,10 @@
+services:
+  ros2_demos_turtlebot3:
+    container_name: ros2_demos_turtlebot3
+    extends:
+      file: ../docker/common.yml
+      service: common
+    image: ros2_demos_turtlebot3
+    build:
+      target: turtlebot3
+    command: tail -f /dev/null

@@ -64,6 +64,12 @@ COPY submodules/ros2_demos $ROS_WS/src/ros2_demos
 
 RUN source /opt/ros/$ROS_DISTRO/setup.bash && colcon build
 
+FROM base AS turtlebot3
+
+RUN apt update  \
+    && apt install -y \
+    ros-${ROS_DISTRO}-turtlebot3*
+
 FROM base AS polygon_demo
 COPY pluginlib/polygon_base $ROS_WS/src/polygon_base
 COPY pluginlib/polygon_plugins $ROS_WS/src/polygon_plugins
