@@ -1,0 +1,12 @@
+services:
+  ros2_demos:
+    container_name: femto
+    extends:
+      file: ../docker/common.yml
+      service: common
+    image: femto
+    build:
+      target: femto
+    #command: tail -f /dev/null
+    #command: ros2 run orbbec_camera list_devices_node
+    command: ros2 launch  orbbec_camera femto_mega.launch.py

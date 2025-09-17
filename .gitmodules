@@ -16,3 +16,6 @@
 [submodule "ros2_cheats_sheet"]
 	path = submodules/ros2_cheats_sheet
 	url = https://github.com/ubuntu-robotics/ros2_cheats_sheet
+[submodule "submodules/orbecsdk_ros"]
+	path = submodules/orbecsdk_ros
+	url = https://github.com/orbbec/OrbbecSDK_ROS2

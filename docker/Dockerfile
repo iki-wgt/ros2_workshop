@@ -108,3 +108,17 @@ RUN apt update \
  && rosdep install --from-paths ${ROS_WS}/src --ignore-src -r -y \
  && rm -rf /var/lib/apt/lists/*
 RUN source /opt/ros/$ROS_DISTRO/setup.bash && colcon build --packages-select room_sim
+
+FROM base AS femto
+COPY submodules/orbecsdk_ros $ROS_WS/src/orbecsdk_ros
+
+RUN apt update  \
+    && apt install -y \
+    libgflags-dev nlohmann-json3-dev  \
+    ros-$ROS_DISTRO-image-transport ros-${ROS_DISTRO}-image-transport-plugins ros-${ROS_DISTRO}-compressed-image-transport \
+    ros-$ROS_DISTRO-image-publisher ros-$ROS_DISTRO-camera-info-manager \
+    ros-$ROS_DISTRO-diagnostic-updater ros-$ROS_DISTRO-diagnostic-msgs ros-$ROS_DISTRO-statistics-msgs \
+    ros-$ROS_DISTRO-backward-ros libdw-dev
+
+RUN source /opt/ros/$ROS_DISTRO/setup.bash && colcon build
+RUN cd $ROS_WS/src/orbecsdk_ros/orbbec_camera/scripts && bash install_udev_rules.sh
