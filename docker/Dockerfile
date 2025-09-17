@@ -68,7 +68,8 @@ FROM base AS turtlebot3
 
 RUN apt update  \
     && apt install -y \
-    ros-${ROS_DISTRO}-turtlebot3*
+    ros-${ROS_DISTRO}-turtlebot3* \
+    ros-${ROS_DISTRO}-turtlesim
 
 FROM base AS polygon_demo
 COPY pluginlib/polygon_base $ROS_WS/src/polygon_base
