@@ -7,6 +7,12 @@ services:
     image: femto
     build:
       target: femto
+    volumes:
+      - /tmp/.X11-unix:/tmp/.X11-unix
+      - $HOME/.Xauthority:/root/.Xauthority
+      - /run/user/1000/gdm/Xauthority:/root/.Xauthority:ro
+      - ./rviz_config:/root/.rviz2
     #command: tail -f /dev/null
     #command: ros2 run orbbec_camera list_devices_node
-    command: ros2 launch  orbbec_camera femto_mega.launch.py
+    #command: ros2 launch  orbbec_camera femto_mega.launch.py
+    command: bash -c "rviz2& ros2 launch orbbec_camera femto_mega.launch.py depth_registration:=true enable_d2c_viewer:=true"
