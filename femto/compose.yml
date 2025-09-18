@@ -12,7 +12,7 @@ services:
       - $HOME/.Xauthority:/root/.Xauthority
       - /run/user/1000/gdm/Xauthority:/root/.Xauthority:ro
       - ./rviz_config:/root/.rviz2
-      - ../submodules/orbecsdk_ros/orbbec_camera/launch:/launch
+      - ./launch:/launch
     #command: tail -f /dev/null
     #command: ros2 run orbbec_camera list_devices_node
     #command: ros2 launch  orbbec_camera femto_mega.launch.py
