@@ -2,7 +2,7 @@ services:
   ros2_demos:
     container_name: femto
     extends:
-      file: ../docker/common.yml
+      file: ../docker/common_nvidia.yml
       service: common
     image: femto
     build:
@@ -12,8 +12,12 @@ services:
       - $HOME/.Xauthority:/root/.Xauthority
       - /run/user/1000/gdm/Xauthority:/root/.Xauthority:ro
       - ./rviz_config:/root/.rviz2
+      - ../submodules/orbecsdk_ros/orbbec_camera/launch:/launch
     #command: tail -f /dev/null
     #command: ros2 run orbbec_camera list_devices_node
     #command: ros2 launch  orbbec_camera femto_mega.launch.py
     #command: bash -c "rviz2& ros2 launch orbbec_camera femto_mega.launch.py depth_registration:=true enable_d2c_viewer:=true"
-    command: bash -c "rviz2& rqt& ros2 launch orbbec_camera femto_mega.launch.py depth_registration:=true color_width:=2560 color_height:=1440 color_format:=rgb888 color_fps:=5 enable_depth_scale:=false enable_colored_point_cloud:=true enable_color:=true"
+    #command: bash -c "rviz2& rqt& ros2 launch orbbec_camera femto_mega.launch.py depth_registration:=true color_width:=2560 color_height:=1440 color_format:=rgb888 color_fps:=5 enable_depth_scale:=false enable_colored_point_cloud:=true enable_color:=true"
+    #command: bash -c "rviz2& rqt& ros2 launch /launch/femto_mega.launch_mod.py color_width:=2560 color_height:=1440 color_format:=rgb888 color_fps:=5 enable_depth_scale:=false enable_color:=true enable_point_cloud:=true"
+
+    command: bash -c "rviz2& rqt& ros2 launch /launch/femto_mega.launch_mod.py enable_color:=true enable_point_cloud:=true"
