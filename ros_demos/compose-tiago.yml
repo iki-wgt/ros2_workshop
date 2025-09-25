@@ -1,0 +1,14 @@
+services:
+  ros2_tiago:
+    container_name: ros2_tiago
+    environment:
+      ROS_DOMAIN_ID: 66
+      DISPLAY: $DISPLAY
+      QT_X11_NO_MITSHM: "1"
+    extends:
+      file: ../docker/common.yml
+      service: common
+    image: ros2_demos
+    build:
+      target: ros2_demos
+    command: tail -f /dev/null
